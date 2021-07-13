@@ -44,6 +44,9 @@ async function prepare(rootDir: string) {
       name.includes('ydoc')
     ) {
       delete deps[name]
+    } else {
+      // 锁定所有依赖版本
+      deps[name] = deps[name].replace(/^(\^|~)/, '')
     }
   }
   Object.assign(deps, {
